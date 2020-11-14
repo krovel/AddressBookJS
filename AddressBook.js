@@ -10,7 +10,6 @@ const emailRegex=new RegExp("^[a-z0-9A-Z]+(([\\.+-][a-z0-9]{1,})?)+@[a-z0-9A-Z]+
 
 const prompt=require('prompt-sync')();
 let contactArray=new Array();
-
 class Contact{
     constructor(firstName,lastName,address,city,state,zip,phoneNumber,email){
         this.firstName=firstName;
@@ -93,17 +92,19 @@ class Contact{
     }
     
 }
+
 function findContact(firstName,lastName){
-    let contactFound;
+    let contactFound=null;
     contactArray.forEach(contact=>{
         if(contact.firstName==firstName && contact.lastName==lastName)
             contactFound=contact;
     });
-    return contactFound.firstName;
+    return contactFound;
 }
 function editContact(firstName,lastName){
     contact=findContact(firstName,lastName);
-    console.log("Contact found!\n"+contact);
+    console.log("contact found"+contact);
+
     console.log("1.Edit address");
     console.log("2.Edit city");
     console.log("3.Edit state");
@@ -133,21 +134,6 @@ function editContact(firstName,lastName){
         default: console.log("No updation !");
     }
 }
-try{
-    let contact1=new Contact("Kashif","Ansari","Chowk","Lucknow","Uttar Pradesh",226003,"91 9598252500","matrixkashif@gmail.com");
-    let contact2=new Contact("Ahmed","Kidwai","Balaganj","Lucknow","Uttar Pradesh",226016,"91 8417888618","esakidwai@gmail.com");
-    let contact3=new Contact("Pragadeesh","Raja","Mathikhere","Bengaluru","Karnataka",526024,"91 9876543210","rajapraga@gmail.com");
-
-    contactArray.push(contact1);
-    contactArray.push(contact2);
-    contactArray.push(contact3);
-}catch(exception){
-    console.log(exception)
-}
-console.log(contactArray);
-// editContact("Kashif","Ansari");
-// console.log(contactArray);
-
 function deleteContact(firstName,lastName){
     let index = contactArray.findIndex(contact => contact._firstName == firstName && contact._lastName == lastName);
     if (index != -1) {
@@ -156,9 +142,31 @@ function deleteContact(firstName,lastName){
         console.log(contactArray);
     }
 }
-// deleteContact("Ahmed","Kidwai");
 
 function getNumberOfContacts(){
     return contactArray.reduce(count=> count+1,0);
 }
-console.log("Total Number of Contacts in the Address Book: "+getNumberOfContacts());
+
+function addContact(contact){
+    if(findContact(contact.firstName,contact.lastName)==null)
+        contactArray.push(contact);
+    else throw "Contact already exits !";
+}
+try{
+    let contact1=new Contact("Kashif","Ansari","Chowk","Lucknow","Uttar Pradesh",226003,"91 9598252500","matrixkashif@gmail.com");
+    let contact2=new Contact("Ahmed","Kidwai","Balaganj","Lucknow","Uttar Pradesh",226016,"91 8417888618","esakidwai@gmail.com");
+    let contact3=new Contact("Kashif","Ansari","Mathikhere","Bengaluru","Karnataka",526024,"91 9876543210","rajapraga@gmail.com");
+
+    addContact(contact1);
+    addContact(contact2);
+    addContact(contact3);
+
+}catch(exception){
+    console.log(exception)
+}
+console.log(contactArray);
+
+// editContact("Kashif","Ansari");
+// console.log(contactArray);
+// deleteContact("Ahmed","Kidwai");
+// console.log("Total Number of Contacts in the Address Book: "+getNumberOfContacts());
