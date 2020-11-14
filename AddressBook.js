@@ -145,8 +145,8 @@ try{
     console.log(exception)
 }
 console.log(contactArray);
-editContact("Kashif","Ansari");
-console.log(contactArray);
+// editContact("Kashif","Ansari");
+// console.log(contactArray);
 
 function deleteContact(firstName,lastName){
     let index = contactArray.findIndex(contact => contact._firstName == firstName && contact._lastName == lastName);
@@ -156,4 +156,9 @@ function deleteContact(firstName,lastName){
         console.log(contactArray);
     }
 }
-deleteContact("Ahmed","Kidwai");
+// deleteContact("Ahmed","Kidwai");
+
+function getNumberOfContacts(){
+    return contactArray.reduce(count=> count+1,0);
+}
+console.log("Total Number of Contacts in the Address Book: "+getNumberOfContacts());
