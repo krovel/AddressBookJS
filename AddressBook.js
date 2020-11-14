@@ -152,14 +152,26 @@ function addContact(contact){
         contactArray.push(contact);
     else throw "Contact already exits !";
 }
+
+function getContactForCity(city){
+    return contactArray.filter(contact=> contact.city==city);
+}
+function getContactForState(state){
+    return contactArray.filter(contact=> contact.state==state);
+}
+
 try{
     let contact1=new Contact("Kashif","Ansari","Chowk","Lucknow","Uttar Pradesh",226003,"91 9598252500","matrixkashif@gmail.com");
     let contact2=new Contact("Ahmed","Kidwai","Balaganj","Lucknow","Uttar Pradesh",226016,"91 8417888618","esakidwai@gmail.com");
-    let contact3=new Contact("Kashif","Ansari","Mathikhere","Bengaluru","Karnataka",526024,"91 9876543210","rajapraga@gmail.com");
+    let contact3=new Contact("Pragadeesh","Raja","Mathikhere","Bengaluru","Karnataka",526024,"91 9876543210","rajapraga@gmail.com");
+    let contact4=new Contact("Vaishali","Verma","Marathahalli","Bengaluru","Karnataka",526015,"91 9900887766","vsiim@gmail.com");
+    let contact5=new Contact("Chitra","Kushwaha","Chandni Chowk","Delhi","New Delhi",760024,"91 9985858500","aryakushwaha@gmail.com");
 
     addContact(contact1);
     addContact(contact2);
     addContact(contact3);
+    addContact(contact4);
+    addContact(contact5);
 
 }catch(exception){
     console.log(exception)
@@ -170,3 +182,7 @@ console.log(contactArray);
 // console.log(contactArray);
 // deleteContact("Ahmed","Kidwai");
 // console.log("Total Number of Contacts in the Address Book: "+getNumberOfContacts());
+console.log("Contacts for a particular city-");
+console.log(getContactForCity("Bengaluru"));
+console.log("Contacts for a particular State-");
+console.log(getContactForState("Uttar Pradesh"));
