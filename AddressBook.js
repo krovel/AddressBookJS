@@ -147,3 +147,13 @@ try{
 console.log(contactArray);
 editContact("Kashif","Ansari");
 console.log(contactArray);
+
+function deleteContact(firstName,lastName){
+    let index = contactArray.findIndex(contact => contact._firstName == firstName && contact._lastName == lastName);
+    if (index != -1) {
+        contactArray.splice(index, 1);
+        console.log("After deleting: " + firstName + " " + lastName);
+        console.log(contactArray);
+    }
+}
+deleteContact("Ahmed","Kidwai");
