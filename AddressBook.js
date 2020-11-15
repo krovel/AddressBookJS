@@ -174,6 +174,16 @@ function sortByContactName(){
     contactArray.sort((contact1, contact2) => contact1.firstName.localeCompare(contact2.firstName));
 }
 
+function sortByCityName(){
+    contactArray.sort((contact1, contact2) => contact1.city.localeCompare(contact2.city));
+}
+function sortByStateName(){
+    contactArray.sort((contact1, contact2) => contact1.state.localeCompare(contact2.state));
+}
+function sortByZipCode(){
+    contactArray.sort((contact1, contact2) => contact1.zip-contact2.zip);
+}
+
 try{
     let contact1=new Contact("Kashif","Ansari","Chowk","Lucknow","Uttar Pradesh",226003,"91 9598252500","matrixkashif@gmail.com");
     let contact2=new Contact("Ahmed","Kidwai","Balaganj","Lucknow","Uttar Pradesh",226016,"91 8417888618","esakidwai@gmail.com");
@@ -251,6 +261,17 @@ function viewByState() {
 // console.log(getContactForState("Uttar Pradesh"));
 // console.log("Number of persons in Lucknow city is "+countForCity("Lucknow"));
 // console.log("Number of persons  in Karnataka state is "+countForState("Karnataka"));
-sortByContactName();
-console.log("After sorting by name: ");
+// sortByContactName();
+// console.log("After sorting by name: ");
+
+sortByZipCode();
+console.log("After sorting by zip code: ");
+console.log(contactArray);
+
+sortByCityName();
+console.log("After sorting by city name: ");
+console.log(contactArray);
+
+sortByStateName();
+console.log("After sorting by state name: ");
 console.log(contactArray);
