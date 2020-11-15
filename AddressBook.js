@@ -170,6 +170,10 @@ function countForState(state){
     return contactListForState.reduce(count=> count+1,0);
 }
 
+function sortByContactName(){
+    contactArray.sort((contact1, contact2) => contact1.firstName.localeCompare(contact2.firstName));
+}
+
 try{
     let contact1=new Contact("Kashif","Ansari","Chowk","Lucknow","Uttar Pradesh",226003,"91 9598252500","matrixkashif@gmail.com");
     let contact2=new Contact("Ahmed","Kidwai","Balaganj","Lucknow","Uttar Pradesh",226016,"91 8417888618","esakidwai@gmail.com");
@@ -245,5 +249,8 @@ function viewByState() {
 // console.log(getContactForCity("Bengaluru"));
 // console.log("Contacts for a particular State-");
 // console.log(getContactForState("Uttar Pradesh"));
-console.log("Number of persons in Lucknow city is "+countForCity("Lucknow"));
-console.log("Number of persons  in Karnataka state is "+countForState("Karnataka"));
+// console.log("Number of persons in Lucknow city is "+countForCity("Lucknow"));
+// console.log("Number of persons  in Karnataka state is "+countForState("Karnataka"));
+sortByContactName();
+console.log("After sorting by name: ");
+console.log(contactArray);
