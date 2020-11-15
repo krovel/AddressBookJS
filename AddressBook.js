@@ -156,6 +156,7 @@ function addContact(contact){
 function getContactForCity(city){
     return contactArray.filter(contact=> contact.city==city);
 }
+
 function getContactForState(state){
     return contactArray.filter(contact=> contact.state==state);
 }
@@ -176,13 +177,62 @@ try{
 }catch(exception){
     console.log(exception)
 }
-console.log(contactArray);
+// console.log(contactArray);
+
+try {
+    viewContacts("state");
+    viewContacts("city");
+}catch(exception){
+    console.log(exception)
+}
+
+function viewContacts(field) {
+    let fieldContactMap = new Map();
+    switch (field) {
+        case "city":
+            fieldContactMap = viewByCity();
+            console.log("All contacts by city: ");
+            console.log(fieldContactMap);
+            break;
+        case "state":
+            fieldContactMap = viewByState();
+            console.log("All contacts by state : ");
+            console.log(fieldContactMap);
+            break;
+        default:
+            throw "View Field : " + field + " is Invalid!";
+    }
+}
+function viewByCity() {
+    let cityMap = new Map();
+    contactArray.forEach(contact => {
+        if (cityMap.has(contact.city)) {
+            cityMap.get(contact.city).push(contact);
+        }
+        else {
+            cityMap.set(contact.city, [contact]);
+        }
+    });
+    return cityMap;
+}
+function viewByState() {
+    let stateMap = new Map();
+    contactArray.forEach(contact => {
+        if (stateMap.has(contact.state)) {
+            stateMap.get(contact.state).push(contact);
+        }
+        else {
+            stateMap.set(contact.state, [contact]);
+        }
+    });
+    return stateMap;
+}
 
 // editContact("Kashif","Ansari");
 // console.log(contactArray);
 // deleteContact("Ahmed","Kidwai");
 // console.log("Total Number of Contacts in the Address Book: "+getNumberOfContacts());
-console.log("Contacts for a particular city-");
-console.log(getContactForCity("Bengaluru"));
-console.log("Contacts for a particular State-");
-console.log(getContactForState("Uttar Pradesh"));
+// console.log("Contacts for a particular city-");
+// console.log(getContactForCity("Bengaluru"));
+// console.log("Contacts for a particular State-");
+// console.log(getContactForState("Uttar Pradesh"));
